@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+        <link href="css.css" rel="stylesheet">
+    <title>mission_2</title>
+</head>
+<body>
+
+<section>
+    <h1><span class="title">Le Contexte De Cette Mission</span></h1>
+    <hr>
+    <h2><span class="ctxte">Un nouvel outil utilisé :</span></h2>
+    <article>
+    <p>Après notre première analyse de la base de données de KDou sur Excel, nous avons cette fois-ci travaillé sur le logiciel "<abbr title="Microsoft Access">Access</abbr>". Celui-ci nous a permis de simplifier nos recherches
+        grâce à la possibilité de faire des requêtes, c’est-à-dire, <dfn>un ensemble d'instructions pour utiliser des données.</dfn></p>
+    <p>Plus précisément, ces requêtes ont été effectuées en <abbr title="Query by Example">QBE</abbr>. L’avantage de ce système (intégré par Access) est qu’il nous permet de disposer d’une interface graphique
+        <strong>low code</strong>, permettant d’utiliser les tables à gauche de celle-ci (l’interface graphique) et de les glisser, en ajoutant des quantificateurs (tels que pour l’attribut d’une table : prix > 30) de sorte à présenter le résultat attendu au logiciel, qui va ensuite effectuer la traduction en <abbr title="Structured Query Language">SQL</abbr> (le langage permettant d’effectuer des requêtes en <abbr title="Système de gestion de base de données">SGBD</abbr> relationnel). pour produire
+        un ensemble de résultats / indicateurs.</p>
+    </article>
+    <hr>
+    <h2><span class="ctxte">L'objectif de notre nouvelle mission :</span></h2>
+    <article>
+    <p>
+        Pour cette mission, il nous a été demandés par KDou d’effectuer des requêtes variées, dont un certain nombre apparaissait d’ors et déjà dans la mission 1 (ex : Donnez l’adresse du fournisseur Marie Delamare ?). Cependant, comme durant la mission précédente, la Base de données de « KDou » contient de nombreuses erreurs, que nous allons devoir prendre en compte pour disposer des résultats correcte.
+    </p>
+    </article>
+    <hr>
+
+</section>
+
+<h1 class="title"> Les 4 Indicateurs Les Plus Pertinants</h1>
+
+<div class="requete">
+    <ol>
+        <li>
+            <div class="qbe">
+                <figure class="imgqbe">
+                    <figcaption><span class="titleqbe">Quelles sont les produits de type viande livrés à Paris (<abbr title="Query by Example sur Access">QBE</abbr>)</span></figcaption>
+                    <img src="assets/QBE1.png" alt="QBE (Quelles sont les produits de type viande livrés à Paris)" height="400px" width="550px">
+                </figure>
+            </div>
+            <h3 class="mini_titre">Tableau résultat:</h3>
+            <div class="tab">
+                <table>
+                    <caption> Quelles sont les produits de type viande livrés à Paris </caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="bord_haut_droite"> NomProd </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Alice Mutton</td>
+                    </tr>
+                    <tr>
+                        <td>Mishi Kobe Niku</td>
+                    </tr>
+                    <tr>
+                        <td>Pâté chinois</td>
+                    </tr>
+                    <tr>
+                        <td>Perth Pasties</td>
+                    </tr>
+                    <tr>
+                        <td>Thüringer Rostbratwurst</td>
+                    </tr>
+                    <tr>
+                        <td>Tourtière crème forestière</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <hr class="hr_interprete">
+            <p class="p_interpretre"> De par cette requête, <strong>KDou</strong> souhaite disposer de tous les produits de type <strong>"viande"</strong> ayant été livrés à <strong>Paris</strong> (et donc vendus de ce fait à des clients parisiens).
+                Ainsi, la requête à effectuer dans ce cas consiste à lier uniquement la table <em>Produit</em> à la table <em>DetailCommande</em>, en ne sélectionnant que les produits ayant un code <strong>catégorie 6</strong>,
+                soit le code correspondant à la catégorie <strong>"viande"</strong>. De plus, il est nécessaire de relier la table <em>DetailCommande</em> à la table <em>Client</em>, par l'intermédiaire de la table <em>Commande.</em>
+                En effet, c'est via la table <em>Client</em> que nous sélectionnons, dans l'attribut <strong>VilleCli</strong>, uniquement les clients résidant à <strong>Paris</strong>.
+                </p>
+            <p class="p_interpretre">
+                Cette requête est particulièrement intéressante, car elle cible un segment important de la clientèle de KDou. En effet, son offre se concentre exclusivement sur l'importation de
+                produits pour une clientèle française, et Paris, étant la capitale, constitue une priorité pour KDou. Avec cette requête, KDou peut analyser si son offre de produits de type
+                viande rencontre du succès auprès de cette clientèle stratégique.
+            </p>
+        </li>
+
+
+
+        <li>
+            <div class="qbe">
+                <figure class="imgqbe">
+                    <figcaption><span class="titleqbe">Quels sont les produits conditionnés dans du carton ou du verre? (QBE)</span></figcaption>
+                    <img class src="assets/QBE2.png" alt="QBE (Quels sont les produits conditionnés dans du carton ou du verre?)" height="350px" width="300px">
+                </figure>
+            </div>
+            <h3 class="mini_titre">Tableau résultat:</h3>
+            <div class="tab">
+                <table>
+                    <caption> Quels sont les produits conditionnés dans du carton ou dans du verre ?</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col"> NomProd </th>
+                        <th scope="col">QteParUnite</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Carnarvon Tigers</td>
+                        <td>1 carton (16 kg)</td>
+                    </tr>
+                    <tr>
+                        <td>Chocolade</td>
+                        <td>10 cartons</td>
+                    </tr>
+                    <tr>
+                        <td>Fløtemysost</td>
+                        <td>10 cartons (500 g)</td>
+                    </tr>
+                    <tr>
+                        <td>Gnocchi di nonna Alice</td>
+                        <td>5 cartons (250 g)</td>
+                    </tr>
+                    <tr>
+                        <td>Gorgonzola Telino</td>
+                        <td>1 cartons (100 g)</td>
+                    </tr>
+                    <tr>
+                        <td>Gravad lax</td>
+                        <td>2 cartons (500 g)</td>
+                    </tr>
+                    <tr>
+                        <td>Gudbrandsdalsost</td>
+                        <td>1 carton (10 kg)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Et 16 autres produits...</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <hr class="hr_interprete">
+            <p class="p_interpretre"> De par cette requête, KDou souhaite disposer d'une "liste" de l'ensemble des produits qui sont conditionnés dans du carton ou dans du verre.
+                Ainsi, il nous suffit (pour trouver ces informations) de sélectionner la table produit et de sélectionner tous les tuples ayant comme valeur, pour l'attribut
+                <em>QteParUnite</em>, <strong>"carton"</strong>, puis d'afficher le nom des produits et la méthode de conditionnement.</p>
+
+            <p class="p_interpretre"> Cela permet de voir l'impact environnemental de KDou et s’ils vendent beaucoup de produits participant
+                à une économie soutenable et un développement durable. Cela permet donc d’évaluer son <strong>empreinte carbone</strong>.</p>
+        </li>
+
+
+
+        <li>
+            <div class="qbe">
+                <figure class="imgqbe">
+                    <figcaption><span class="titleqbe">Quelles sont les dates des commandes du client Max Deschamps ? (QBE)</span></figcaption>
+                    <img class src="assets/QBE3.png" alt="1ère requête en QBE" height="350px" width="350px">
+                </figure>
+            </div>
+            <h3 class="mini_titre">Tableau résultat:</h3>
+            <div class="tab">
+                <table>
+                    <caption> Quelles sont les dates des commandes du client Max Deschamps ?</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="bord_haut_droite"> DateCom </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>16/12/2018</td>
+                    </tr>
+                    <tr>
+                        <td>05/03/2019</td>
+                    </tr>
+                    <tr>
+                        <td>21/07/2019</td>
+                    </tr>
+                    <tr>
+                        <td>10/08/2020</td>
+                    </tr>
+                    <tr>
+                        <td>31/03/2021</td>
+                    </tr>
+                    <tr>
+                        <td>16/04/2021</td>
+                    </tr>
+                    <tr>
+                        <td>Et 12 autres dates...</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <hr class="hr_interprete">
+            <p class="p_interpretre"> De par cette requête, KDou souhaite disposer de l'ensemble des dates des commandes effectuées par le client <strong>Max Deschamps</strong>.
+                Cette information est contenue dans la table <em>Commande</em>. Ainsi, pour obtenir ces informations, il nous suffit de sélectionner la table <em>Client</em> et la table
+                <em>Commande</em> en les reliant par une jointure, et en ne sélectionnant que les tuples ayant comme valeur, au niveau de l'attribut <em>ContactCli</em>,
+                <strong>"Max Deschamps"</strong>, puis d'afficher les valeurs de l'attribut <em>DateCom</em> dans l'ordre décroissant.</p>
+
+            <p class="p_interpretre"> Cela permet à KDou de disposer d’un cas de client particulier (particulièrement fidèle)
+                afin d’analyser la fréquence d’achat de la clientèle, et dans le cas de ce client, la fréquence d’achat de la clientèle habituée.</p>
+        </li>
+
+
+
+        <li>
+            <div class="qbe">
+                <figure class="imgqbe">
+                    <figcaption><span class="titleqbe">1 - Dans quels ville la clientèle est la plus importante (QBE)</span></figcaption>
+                    <img class src="assets/QBE4.png" alt="QBE (dans quels ville la clientèle est la plus importante 1)" height="250px" width="200px">
+                </figure>
+                <figure class="imgqbe">
+                    <figcaption><span class="titleqbe">2 - Dans quels ville la clientèle est la plus importante (QBE)</span></figcaption>
+                    <img class src="assets/QBE5.png" alt="QBE (dans quels ville la clientèle est la plus importante 2)" height="250px" width="320px">
+                </figure>
+                <figure class="imgqbe">
+                    <figcaption><span class="titleqbe">3 - Dans quels ville la clientèle est la plus importante (QBE)</span></figcaption>
+                    <img class src="assets/QBE6.png" alt="QBE (dans quels ville la clientèle est la plus importante 3)" height="250px" width="340px">
+                </figure>
+            </div>
+            <h3 class="mini_titre">Tableaux résultats:</h3>
+            <div class="tab">
+                <table>
+                    <caption>1 - Dans quels ville la clientèle est la plus importante</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="bord_haut_droite"> VilleCli </th>
+                        <th scope="col" class="bord_haut_droite"> CompteDeCodeCli </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Agen</th>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paris</th>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nantes</th>
+                        <td>3</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+                <table>
+                    <caption>2 - Dans quels ville la clientèle est la plus importante</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="bord_haut_droite"> VilleCli </th>
+                        <th scope="col" class="bord_haut_droite"> CompteDeCodeCli </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Agen</th>
+                        <td>141</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paris</th>
+                        <td>133</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nantes</th>
+                        <td>115</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+                <table>
+                    <caption>3 - Dans quels ville la clientèle est la plus importante</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="bord_haut_droite"> VilleCli </th>
+                        <th scope="col" class="bord_haut_droite"> CompteDeCodeCli </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Agen</th>
+                        <td>363</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paris</th>
+                        <td>359</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nantes</th>
+                        <td>303</td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+
+            </div>
+            <hr class="hr_interprete">
+            <p class="p_interpretre">Pour cette requête, KDou souhaite disposer des 3 premières villes dans lesquelles sa clientèle est la plus importante.
+            Or, le résultat dépend du critère sur lequel KDou considère qu’une clientèle est importante.</p>
+            <p class="p_interpretre"> Ainsi, si pour KDou, la ville dans laquelle la clientèle
+                est la plus importante signifie celle dans laquelle ils ont le plus de <strong>clients</strong> (première image et premier tableau),
+                alors il suffit de sélectionner la table <em>Client</em>,
+                de regrouper chaque tuple de celle-ci (en un sous-ensemble) en fonction de la valeur qu’ils possèdent dans l’attribut <em>VilleCli</em>,
+                puis d’afficher les villes ainsi que le compte des lignes de chaque sous-ensemble (une ligne correspond à un client).</p>
+
+            <p class="p_interpretre"> Cependant, si pour KDou, la ville dans laquelle la clientèle
+                est la plus importante signifie celle dans laquelle ils ont le plus de <strong>commande</strong> en fonction des <Strong>villes</Strong> (2eme image et tableau),
+                alors il suffit de faire une liaison entre la table <em>Client</em> et la table <em>Commande</em>,
+                de regrouper chaque tuple de celle-ci (en un sous-ensemble) en fonction de la valeur qu’ils possèdent dans l’attribut <em>VilleCli</em>,
+                puis d’afficher les villes ainsi que le compte des lignes de chaque sous-ensemble (une ligne correspond à une commande).</p>
+
+            <p class="p_interpretre"> Enfin, si pour KDou, la ville dans laquelle la clientèle est la plus importante signifie celle dans laquelle ils ont le plus de <strong>produits</strong> vendus
+                en fonction des <strong>villes</strong> (3eme image et tableau), alors il suffit de faire une liaison entre l'expression précédente et la table <em>DetailCommande</em>,
+                de regrouper chaque tuple de celle-ci (en un sous-ensemble) en fonction de la valeur qu’ils possèdent dans l’attribut <em>VilleCli</em>,
+                puis d’afficher les villes ainsi que le compte des lignes de chaque sous-ensemble (une ligne correspond à un produit vendu grâce à la jointure avec <em>DetailCommande</em>,
+                où dans cette table chaque ligne correspond à un <strong>article</strong> d'une commande).</p>
+
+                <p class="p_interpretre"> Cela peut permettre à KDou de mieux s'organiser, en optimisant les moyens et méthodes de livraison utilisés,
+                    en sélectionnant de potentiels nouveaux entrepôts en fonction de la proximité avec ces villes.
+                    Ce qui doit permettre à KDou de disposer d'une meilleure disposition des stocks, de coûts de livraison plus faibles et d'une meilleure expérience client.</p>
+        </li>
+    </ol>
+</div>
+
+
+<footer>
+    <h2>Pied De Page</h2>
+    <ul class="list_liens">
+        <li>
+            <h3 class="txtfooter"> Les Autres Missions  </h3>
+        </li>
+        <li>
+            <a href="mission1.html"><span>Mission 1</span></a>
+        </li>
+        <li>
+            <a href="bg.fr"><span>Mission 3</span></a>
+        </li>
+    </ul>
+</footer>
+
+
+
+</body>
+</html>
